@@ -36,7 +36,44 @@ int getLongestRow(const int arr[], int length) {
 }
 
 //Task.4
-//FINISH
+//with division
+bool isGP(const double arr[], int size) {
+    if (size < 2) return false;
+
+    if (arr[0] == 0) return false;
+    double r = arr[1] / arr[0];
+
+    for (int i = 2; i < size; i++) {
+        if (arr[i - 1] == 0 || arr[i] / arr[i - 1] != r) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+//without division
+double absValue(double n) {
+    return n < 0 ? -n : n;
+}
+
+bool isGP2(const double arr[], int size) {
+    if (size < 2) return false;
+
+    if (size == 2) return true;
+
+    const double EPS = 1e-9;
+
+    for (int i = 2; i < size; i++) {
+        double lhs = arr[i] * arr[i - 2];
+        double rhs = arr[i - 1] * arr[i - 1];
+        if (absValue(lhs - rhs) > EPS) {
+            return false;
+        }
+    }
+
+    return true;
+}
 
 //Task.5
 void setToNull(int arr[], int length) {
@@ -291,11 +328,12 @@ int main()
 {
     int arr1[] = { 1, 2, 3, 4, 5 };
     int arr2[] = { 2, 4, 6, 8, 11 };
+    double arr[] = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024 };
     
 
     int result[MAX_SIZE];
     int resultLength = 0;
 
-    std::cout << (checkLinearDependence(arr1, 5, arr2, 5) ? "true" : "false") << std::endl;
+    std::cout << (isGP2(arr, 11) ? "true" : "false") << std::endl;
 }
 
