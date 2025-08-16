@@ -294,7 +294,7 @@ bool hasSymbol(const char* string, unsigned int length, char ch) {
     if (!string) return false;
 
     for (unsigned int i = 0; i < length; i++) {
-        if (string[length] == ch) {
+        if (string[i] == ch) {
             return true;
         }
     }
@@ -325,7 +325,7 @@ void getUnduplicatedElements(const char* first, const char* second, char* result
         }
     }
 
-    *result = '\0';
+    result[resultLength] = '\0'; 
 }
 
 //Task.12
@@ -452,10 +452,10 @@ int main()
 {
     const char* matrix[3] = { "flower", "flow", "flight" };
     char num[] = "3579";
-    char mun[] = "3696";
-    char result[MAX_SIZE];
-    
-    getLongestPrefix(matrix, result);
+    char mun[] = "3696"; 
+    char result[MAX_SIZE]; 
+
+    getLongestPrefix(matrix, result); 
     std::cout << integerCompare(num, mun) << std::endl; 
 }
 
